@@ -3,7 +3,6 @@ import '../App.css';
 
 const DoneQuestion = (props) => {
     const { questions } = props;
-    console.log(props);
     return (
         <div className='question-container'>
             <h1 className='question-box-title'>Done Questions</h1>
@@ -18,13 +17,12 @@ const DoneQuestion = (props) => {
                     </li>
                 ))}
             </div>
-          
         </div>
     )
 }
 
-const mapStateToProps = (state, { id }) => {
-    const user = state.users[id];
+const mapStateToProps = ({authedUser, users, questions}, { id }) => {
+    const user = users[id];
 
     if (!user) {
         // Handle the case where the user doesn't exist
@@ -32,9 +30,9 @@ const mapStateToProps = (state, { id }) => {
     }
 
     const answeredQuestions = Object.keys(user.answers)
-        .filter(questionId => state.questions[questionId]) // ensures question exists
+        .filter(questionId => questions[questionId]) // ensures question exists
         .map(questionId => {
-            const question = state.questions[questionId];
+            const question = questions[questionId];
             return {
                 id: question.id,
                 author: question.author,
@@ -51,6 +49,7 @@ const mapStateToProps = (state, { id }) => {
         });
 
     return {
+        authedUser,
         questions: answeredQuestions,
     };
 }

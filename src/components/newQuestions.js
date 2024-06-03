@@ -22,8 +22,8 @@ const NewQuestion = (props) => {
         </div>
     )
 }
-const mapStateToProps = (state, { id }) => {
-    const user = state.users[id];
+const mapStateToProps = ({authedUser, users, questions}, { id }) => {
+    const user = users[id];
 
     if (!user) {
         // Handle the case where the user doesn't exist
@@ -31,10 +31,10 @@ const mapStateToProps = (state, { id }) => {
     }
 
     const answeredQuestions = new Set(Object.keys(user.answers));
-    const unansweredQuestions = Object.keys(state.questions)
+    const unansweredQuestions = Object.keys(questions)
         .filter(questionId => !answeredQuestions.has(questionId)) // ensures question is unanswered
         .map(questionId => {
-            const question = state.questions[questionId];
+            const question = questions[questionId];
             return {
                 id: question.id,
                 author: question.author,
@@ -51,6 +51,7 @@ const mapStateToProps = (state, { id }) => {
         });
 
     return {
+        authedUser,
         questions: unansweredQuestions,
     };
 }

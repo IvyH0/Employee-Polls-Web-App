@@ -66,3 +66,32 @@
     cursor: pointer;
     flex-shrink: 1; 
 }
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 15px; 
+}
+.poll-container {
+    margin-bottom: 20px; 
+}
+.poll-questions{
+    display: flex; 
+    justify-content: space-between;
+    gap: 20px; 
+    margin-top: 20px; 
+}
+.poll-option{
+    text-align: center;
+    border: 2px solid #ffa57c; 
+    border-radius: 20px; 
+}
+.poll-select{
+    margin: 0; 
+    background-color:  #fff5f0; 
+    border-radius: 0 0 20px 20px;
+    padding: 10px; 
+}
+.poll-text{
+    padding: 20px;
+}
