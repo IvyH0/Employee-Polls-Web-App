@@ -3,7 +3,7 @@ let users = {
     id: 'sarahedo',
     password:'password123',
     name: 'Sarah Edo',
-    avatarURL: null,
+    avatarURL: "https://gravatar.com/avatar/aa48413856561999ac26c16585832606?s=400&d=robohash&r=x",
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -16,7 +16,7 @@ let users = {
     id: 'tylermcginnis',
     password:'abc321',
     name: 'Tyler McGinnis',
-    avatarURL: null,
+    avatarURL: "https://gravatar.com/avatar/2770632047845f7c584c83d3fbb4b56e?s=400&d=robohash&r=x",
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -27,7 +27,7 @@ let users = {
     id: 'mtsamis',
     password:'xyz123',
     name: 'Mike Tsamis',
-    avatarURL: null,
+    avatarURL: "https://gravatar.com/avatar/9ea29e6c061df946f4286a6edd942920?s=400&d=robohash&r=x",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -39,7 +39,7 @@ let users = {
     id: 'zoshikanlu',
     password:'pass246',
     name: 'Zenobia Oshikanlu',
-    avatarURL: null,
+    avatarURL: "https://gravatar.com/avatar/118a230e521533c92dba787d034eb764?s=400&d=robohash&r=x",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
     },
@@ -144,7 +144,7 @@ export function _getQuestions () {
   })
 }
 
-function formatQuestion ({ optionOneText, optionTwoText, author }) {
+export function formatQuestion ({ optionOneText, optionTwoText, author }) {
   return {
     id: generateUID(),
     timestamp: Date.now(),
