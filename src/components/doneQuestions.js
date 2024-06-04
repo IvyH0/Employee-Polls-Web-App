@@ -7,7 +7,7 @@ const DoneQuestion = (props) => {
     const { questions } = props;
 
     const handleQuestionClick = (id) => {
-        navigate(`/questions/:${id}`);
+        navigate(`/questions/${id}`);
     };
 
     return <QuestionList title="Completed Questions" questions={questions} onQuestionClick={handleQuestionClick} />;

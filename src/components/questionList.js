@@ -1,5 +1,6 @@
 import '../App.css';
-const QuestionList = ({ title, questions, onQuestionClick }) => (
+
+const QuestionList = ({ title, questions, onQuestionClick, }) => (
     <div className='question-container'>
         <h1 className='question-box-title'>{title}</h1>
         <div className='question-box'>
@@ -17,15 +18,3 @@ const QuestionList = ({ title, questions, onQuestionClick }) => (
 );
 
 export default QuestionList;
-
-// import { useLocation, useNavigate, useParams } from 'react-router-dom';
-
-// const withRouter = (Component) => {
-//     const ComponentWithRouterProp = (props) => {
-//         let location = useLocation(); 
-//         let navigate = useNavigate(); 
-//         let params = useParams(); 
-//         return <Component {...props} router={{location, navigate, params}}/>;
-//     };
-//     return ComponentWithRouterProp;
-// }

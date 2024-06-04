@@ -1,6 +1,17 @@
 import { connect } from 'react-redux';
 import DoneQuestion from './doneQuestions';
 import NewQuestion from './newQuestions';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
+const withRouter = (Component) => {
+    const ComponentWithRouterProp = (props) => {
+        let location = useLocation(); 
+        let navigate = useNavigate(); 
+        let params = useParams(); 
+        return <Component {...props} router={{location, navigate, params}}/>;
+    };
+    return ComponentWithRouterProp;
+}
 
 const Homepage = (props) => {
     return (
@@ -13,14 +24,18 @@ const Homepage = (props) => {
     );
 }
 
-const mapStateToProps = ({ questions }) => {
+const mapStateToProps = ({ authedUser, questions, users }, props) => {
+    const {id} = props.match.params;
+
     return {
-        questionIds: Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+        id,
+        authedUser,
+        // questionIds: Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
     }
        
 }
 
-export default connect(mapStateToProps)(Homepage); 
+export default withRouter(connect(mapStateToProps)(Homepage)); 
 
 //what does this component need from the state of our redux store? 
 //setAuthUser ( who's account it is )

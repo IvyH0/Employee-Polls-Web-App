@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
 import QuestionList from './questionList';
 import { useNavigate } from 'react-router-dom';
-import { Link} from 'react-router-dom';
 
 const NewQuestion = (props) => {
     const navigate = useNavigate();
     const handleQuestionClick = (id) => {
-        navigate(`/questions/:${id}`);
+        navigate(`/questions/${id}`);
     };
 
     const { questions } = props;
@@ -15,7 +14,6 @@ const NewQuestion = (props) => {
 
 const mapStateToProps = ({authedUser, users, questions}, { id }) => {
     const user = users[id];
-
     if (!user) {
         // Handle the case where the user doesn't exist
         return { questions: [] };

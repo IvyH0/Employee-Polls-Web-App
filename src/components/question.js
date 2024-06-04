@@ -1,20 +1,27 @@
 import {connect} from 'react-redux';
-// import {saveQuestionAnswer} from '../apis';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
+const withRouter = (Component) => {
+    const ComponentWithRouterProp = (props) => {
+        let location = useLocation(); 
+        let navigate = useNavigate(); 
+        let params = useParams(); 
+        return <Component {...props} router={{location, navigate, params}}/>;
+    };
+    return ComponentWithRouterProp;
+}
 
 const Question = (props) => {
-    const { questions, users } = props;
-    
-    if (questions === null) {
-        return <p>This question doesn't exist</p>
+    const {question} = props; 
+    if (!question) {
+        return <p>This Question doesn't exist!</p>
     }
-    console.log('props', props); 
-
-    const { id, author, optionOne, optionTwo} = questions;
-    const user = users[author];
-    console.log('user',user)
+    const {id, optionOne, optionTwo, author } = question;
+    const user = props.users[author];
 
     //add save question answer function here to store
     // create an action for the save questino function and place in ehre
+
     return (
         <div key={id}>
             <h1 className='question-box-title'>{user.name} asks:</h1>
@@ -46,15 +53,18 @@ const Question = (props) => {
     );
 };
 
+
 const mapStateToProps = ({authedUser, users, questions}, props) => {
-    const {id} = props.match.params;
+    const {id} = props.router.params
+    const question = questions[id]
+    console.log(authedUser)
+    console.log('question', question)
     return {
         authedUser, 
         users,
-        id,
-        questions: questions[id]
+        question,
         // !questions[id] ? [] : questions[id].questions.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
     };
 };
 
-export default connect(mapStateToProps)(Question);
+export default withRouter(connect(mapStateToProps)(Question));

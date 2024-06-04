@@ -15,6 +15,10 @@ function App(props) {
     }, []);
 
     return (
+        // <div>
+        //     <Question id='xj352vofupe1dqz9emx13r'/>
+        // </div>
+
         <Fragment>
             <div className='app-container'>
                 <Nav/>
@@ -22,10 +26,8 @@ function App(props) {
                         props.loading === true
                         ? null
                         : <Routes>
-                            <Route path='/' element={<Homepage />} />
-                            <Route path='/questions/:id' element={<Question  match={{
-                                    params: {id : 'xj352vofupe1dqz9emx13r' }, 
-                                }} />} />
+                            <Route path='/' element={<Homepage match={{params: {id : 'xj352vofupe1dqz9emx13r' }}} />} />
+                            <Route path='/questions/:id' element={<Question />} />
                             <Route path='/add' element={<CreateQuestion />} />
                         </Routes>
                     }
