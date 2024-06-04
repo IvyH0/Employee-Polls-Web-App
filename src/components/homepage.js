@@ -16,8 +16,8 @@ const withRouter = (Component) => {
 const Homepage = (props) => {
     return (
         <div className='center'>
-            <NewQuestion id='sarahedo' />
-            <DoneQuestion id='sarahedo' /> 
+            <NewQuestion id={props.id} />
+            <DoneQuestion id={props.id} /> 
             {/* rememver to change the id back to the id which would equal the user thats logged in */}
 
         </div>

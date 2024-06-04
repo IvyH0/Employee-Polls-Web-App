@@ -1,7 +1,31 @@
-import { saveQuestion } from '../apis';
+import { saveQuestion, saveQuestionAnswer} from '../apis';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
+export const SAVE_ANSWER = 'SAVE_ANSWER';
+
+function saveAnswer ({authedUser, qid, answer}) {
+    return {
+        type: SAVE_ANSWER,
+        authedUser,
+        qid,
+        answer,
+    };
+}
+
+//ascynchronous action creator/invokes saving the answer
+export function handleSaveAnswer (info) {
+    return (dispatch) => {
+        dispatch(saveAnswer(info));
+
+        return saveQuestionAnswer(info)
+        .catch((e) => {
+            console.warn('Error in handleSaveAnswer:', e);
+            dispatch(saveAnswer(info));
+            alert('There was an error saving the answer. Try again.');
+        });
+    };
+};
 
 
 function addQuestion (question) {

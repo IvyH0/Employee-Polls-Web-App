@@ -8,7 +8,7 @@ const QuestionList = ({ title, questions, onQuestionClick, }) => (
                 <li key={question.id} className='list'>
                     <div className='question-option'>
                         <p className='option-title'>{question.author}</p>
-                        <p className='option-subtext'>{question.timestamp}</p>
+                        <p className='option-subtext'>{question.formattedTimestamp}</p>
                         <button type='button' className='btn' onClick={() => onQuestionClick(question.id)}>Show Question</button>
                     </div>      
                 </li>

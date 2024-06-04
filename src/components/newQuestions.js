@@ -27,7 +27,8 @@ const mapStateToProps = ({authedUser, users, questions}, { id }) => {
             return {
                 id: question.id,
                 author: question.author,
-                timestamp: new Date(question.timestamp).toLocaleDateString('en-GB', { 
+                timestamp: question.timestamp, // keep the original timestamp for sorting
+                formattedTimestamp: new Date(question.timestamp).toLocaleDateString('en-GB', { 
                     day: '2-digit', 
                     month: '2-digit', 
                     year: '2-digit'
@@ -37,11 +38,12 @@ const mapStateToProps = ({authedUser, users, questions}, { id }) => {
                     hour12: true 
                 }),
             }
-        });
+        })
+        .sort((a, b) => b.timestamp - a.timestamp); 
 
     return {
         authedUser,
-        questions: unansweredQuestions,
+        questions: unansweredQuestions
     };
 }
 

@@ -3,7 +3,7 @@ import {receiveUsers} from './users';
 import {receiveQuestions} from './pollQuestions';
 import {setAuthedUser} from './authedUser';
 
-const AUTHED_ID = 'sarahedo';
+const AUTHED_ID = 'mtsamis';
 
 export function handleInitialData () {
     return (dispatch) => {

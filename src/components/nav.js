@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
+import ProfileNav from './profileNav';
 
-const Nav = () => {
+const Nav = (props) => {
     return (
         <nav className='nav'>
             <ul className='nav-list'>
@@ -14,6 +15,7 @@ const Nav = () => {
                     <Link to='/leaderboard'  className='nav-option'>Leaderboard</Link>
                 </li>
             </ul>
+            <ProfileNav/>
         </nav>
     )
 }

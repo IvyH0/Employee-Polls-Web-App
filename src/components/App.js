@@ -12,27 +12,30 @@ import { Routes, Route } from 'react-router-dom';
 function App(props) {
     useEffect(() => {
         props.dispatch(handleInitialData());
-    }, []);
+    }, [props]);
 
     return (
         // <div>
-        //     <Question id='xj352vofupe1dqz9emx13r'/>
+        //     <Nav/>
         // </div>
-
         <Fragment>
-            <div className='app-container'>
-                <Nav/>
-                    {
-                        props.loading === true
-                        ? null
-                        : <Routes>
-                            <Route path='/' element={<Homepage match={{params: {id : 'xj352vofupe1dqz9emx13r' }}} />} />
+        <div className='app-container'>
+            {
+                props.loading === true
+                ? null
+                : (
+                    <>
+                        <Nav/>
+                        <Routes>
+                            <Route path='/' element={<Homepage match={{params: {id : 'mtsamis' }}} />} />
                             <Route path='/questions/:id' element={<Question />} />
                             <Route path='/add' element={<CreateQuestion />} />
                         </Routes>
-                    }
-            </div>
-        </Fragment>
+                    </>
+                  )
+            }
+        </div>
+    </Fragment>
     );
 }
 
