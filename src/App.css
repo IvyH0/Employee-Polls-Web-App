@@ -66,11 +66,16 @@
     cursor: pointer;
     flex-shrink: 1; 
 }
+.btn:hover {
+    background-color: #ff8c52; 
+
+}
 .avatar {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     margin-bottom: 15px; 
+    background-color: rgb(123, 175, 218);
 }
 .poll-container {
     margin-bottom: 20px; 
@@ -94,4 +99,30 @@
 }
 .poll-text{
     padding: 20px;
+}
+.form-container{
+    width: 80%; 
+}
+.input{
+    padding: 10px; 
+    border: 2px solid #ffa57c; 
+    border-radius: 10px; 
+    width: 100%; 
+}
+.input-label{
+    margin-top: 30px; 
+}
+
+.nav-list{
+    list-style-type: none;
+    display: flex; 
+    margin: 20px 0 30px 0; 
+}
+.nav-option{
+    text-decoration: none;
+    color: black; 
+}
+
+.nav-option:hover {
+    color: #ffa57c; 
 }

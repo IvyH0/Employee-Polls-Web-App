@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS } from '../actions/pollQuestions';
+import { RECEIVE_QUESTIONS, ADD_QUESTION } from '../actions/pollQuestions';
 
 export default function questions(state = {}, action) {
   switch (action.type) {
@@ -7,7 +7,14 @@ export default function questions(state = {}, action) {
         ...state,
         ...action.questions
       };
-    default:
+    case ADD_QUESTION :
+      const { question } = action; 
+      return {
+        ...state,
+        [question.id]: question,
+        // ...author
+      };
+      default:
       return state;
   }
 }

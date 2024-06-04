@@ -1,24 +1,16 @@
 import { connect } from 'react-redux';
-import '../App.css';
+import {useNavigate} from 'react-router-dom';
+import QuestionList from './questionList';
 
 const DoneQuestion = (props) => {
+    const navigate = useNavigate();
     const { questions } = props;
-    return (
-        <div className='question-container'>
-            <h1 className='question-box-title'>Done Questions</h1>
-            <div className='question-box'>
-                {questions.map(question => (
-                    <li key={question.id} className='list'>
-                        <div className='question-option'>
-                            <p className='option-title'>{question.author}</p>
-                            <p className='option-subtext'>{question.timestamp}</p>
-                            <button type='button' className='btn'>Show Question</button>
-                        </div>      
-                    </li>
-                ))}
-            </div>
-        </div>
-    )
+
+    const handleQuestionClick = (id) => {
+        navigate(`/questions/:${id}`);
+    };
+
+    return <QuestionList title="Completed Questions" questions={questions} onQuestionClick={handleQuestionClick} />;
 }
 
 const mapStateToProps = ({authedUser, users, questions}, { id }) => {

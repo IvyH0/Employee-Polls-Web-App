@@ -1,27 +1,18 @@
 import { connect } from 'react-redux';
-import '../App.css';
+import QuestionList from './questionList';
+import { useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const NewQuestion = (props) => {
+    const navigate = useNavigate();
+    const handleQuestionClick = (id) => {
+        navigate(`/questions/:${id}`);
+    };
+
     const { questions } = props;
-    console.log(props);
-    return (
-        <div className='question-container'>
-            <h1 className='question-box-title'>New Questions</h1>
-            <div className='question-box'>
-                {questions.map(question => (
-                    <li key={question.id} className='list'>
-                        <div className='question-option'>
-                            <p className='option-title'>{question.author}</p>
-                            <p className='option-subtext'>{question.timestamp}</p>
-                            <button type='button' className='btn'>Show Question</button>
-                        </div>      
-                    </li>
-                ))}
-            </div>
-          
-        </div>
-    )
-}
+    return <QuestionList title="New Questions" questions={questions} onQuestionClick={handleQuestionClick} />;
+};
+
 const mapStateToProps = ({authedUser, users, questions}, { id }) => {
     const user = users[id];
 
