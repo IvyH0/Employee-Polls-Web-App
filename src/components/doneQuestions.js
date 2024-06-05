@@ -14,7 +14,7 @@ const DoneQuestion = (props) => {
 }
 
 const mapStateToProps = ({authedUser, users, questions}, { id }) => {
-    const user = users[id];
+    const user = users[authedUser];
 
     if (!user) {
         // Handle the case where the user doesn't exist

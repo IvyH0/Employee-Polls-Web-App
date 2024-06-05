@@ -1,4 +1,5 @@
 # Employee Polls Project
+To launch this app, 'npm install' and 'npm start'
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
 

@@ -198,3 +198,64 @@
 .close-btn:hover {
     background-color: #ff8c52; 
 }
+
+.table-head{
+    display:flex; 
+    background-color: #ffa57c;
+    color: white; 
+    padding: 10px; 
+}
+.user-th{
+    width: 50%;
+    padding-left: 10px; 
+}
+.created-th,
+.answer-th{
+    width: 25%; 
+    text-align:center
+}
+.table-row{
+    display:flex; 
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff5f0;
+}
+.table-cell-1{
+    width: 50%;
+}
+.table-cell-2,
+.table-cell-3{
+    width: 25%; 
+    text-align:center
+}
+
+.user-cell {
+    display: flex; 
+    align-items: center;
+}
+.leaderboard{
+    width: 90%; 
+}
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #ffa57c;
+}
+.login-title {
+    color:  #fff5f0; 
+}
+.login-subtext {
+    font-size: 20px;
+    font-style: italic;
+}
+.login-select{
+    padding: 10px; 
+    border: 2px solid #ffa57c; 
+    border-radius: 10px; 
+    width: 100%; 
+    margin: 10px 0; 
+}

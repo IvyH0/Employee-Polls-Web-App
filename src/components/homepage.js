@@ -18,19 +18,17 @@ const Homepage = (props) => {
         <div className='center'>
             <NewQuestion id={props.id} />
             <DoneQuestion id={props.id} /> 
-            {/* rememver to change the id back to the id which would equal the user thats logged in */}
 
         </div>
     );
 }
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
-    const {id} = props.match.params;
+    const {id} = props.router.params;
 
     return {
         id,
         authedUser,
-        // questionIds: Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
     }
        
 }

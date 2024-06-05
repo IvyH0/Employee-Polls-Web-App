@@ -13,7 +13,9 @@ const NewQuestion = (props) => {
 };
 
 const mapStateToProps = ({authedUser, users, questions}, { id }) => {
-    const user = users[id];
+    const user = users[authedUser];
+    console.log(user)
+
     if (!user) {
         // Handle the case where the user doesn't exist
         return { questions: [] };

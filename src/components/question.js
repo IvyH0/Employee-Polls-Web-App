@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { handleSaveAnswer } from '../actions/pollQuestions';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams} from 'react-router-dom';
 import PollResults from './pollResults';
 
 const withRouter = (Component) => {
@@ -17,6 +17,7 @@ const withRouter = (Component) => {
 const Question = (props) => {
     const {question, users, authedUser} = props; 
     const [showPoll, setShowPoll] = useState(false);
+    const navigate = useNavigate();
 
     const handleSelect = (e, option) => {
         e.preventDefault();
@@ -32,19 +33,24 @@ const Question = (props) => {
         setShowPoll(!showPoll);
     }
 
-    if (question === undefined) {
-        return (
-            <div className='center'>
-                <h2>404</h2>
-                <p>This Question doesn't exist!</p>
-            </div>
-        );
-    };
+    useEffect(() => {
+        if (!question) {
+            navigate('../404');
+        }
+    }, [question, navigate]);
+    
+    if(!question) {
+        return null; 
+    }
+    if (authedUser === null) {
+        navigate('/login');
+        return null;
+      }
 
     const {id, optionOne, optionTwo, author } = question;
-    const user = props.users[author];
 
-    console.log(users[authedUser].answers)
+    
+    const user = props.users[author];
 
     return (
         <div key={id}>
@@ -109,7 +115,6 @@ const mapStateToProps = ({authedUser, users, questions}, props) => {
         authedUser, 
         users,
         question,
-        // !questions[id] ? [] : questions[id].questions.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
     };
 };
 

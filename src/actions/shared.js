@@ -3,15 +3,21 @@ import {receiveUsers} from './users';
 import {receiveQuestions} from './pollQuestions';
 import {setAuthedUser} from './authedUser';
 
-const AUTHED_ID = 'mtsamis';
+import { receiveError } from './error';
 
-export function handleInitialData () {
+const authedId = 'mtsamis';
+
+export function handleInitialData (authedId) {
     return (dispatch) => {
         return getInitialData()
             .then(({users, questions}) => {
                 dispatch(receiveUsers(users))
                 dispatch(receiveQuestions(questions))
-                dispatch(setAuthedUser(AUTHED_ID))
+                dispatch(receiveError(null))
+                if (authedId) {
+                    dispatch(setAuthedUser(authedId))
+                }
+
             })
     }
 }
