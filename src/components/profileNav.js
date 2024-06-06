@@ -1,8 +1,10 @@
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {logoutUser} from '../actions/authedUser';
 
-const ProfileNav = (props) => {
-    const user = props.user;
+
+const ProfileNav = ({user, dispatch}) => {
+
     let avatarURL;
     let name; 
     if(user){
@@ -11,6 +13,11 @@ const ProfileNav = (props) => {
     if(user) {
         name = user.name;
     }
+
+    const logout = () => {
+        dispatch(logoutUser());
+    }
+
     return (
         <nav className='nav'>
             <ul className='nav-list'>
@@ -20,8 +27,9 @@ const ProfileNav = (props) => {
                         <span>{name}</span> 
                     </div>
                 </li>
+
                 <li>
-                    <Link to='/login' className='nav-option'>Logout</Link>
+                    <Link to='/login' className='nav-option' onClick={logout}>Logout</Link>
                 </li>
             </ul>
         </nav>  

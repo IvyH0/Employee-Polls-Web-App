@@ -1,25 +1,28 @@
 import {connect} from 'react-redux';    
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {setAuthedUser} from '../actions/authedUser';
+import {loginUser} from '../actions/authedUser';
+import {useNavigate, useLocation} from 'react-router-dom';
+
 
 const Login = (props) => {
     const { users } = props;
     const[select, setSelect] = useState('')
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const { from = { pathname: '/' } } = location.state || {};
 
     const handleSelectChange = (e) => {
         e.preventDefault();
         setSelect(e.target.value)
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         if (select) {
-            props.dispatch(setAuthedUser(select));
-            navigate('/');
-        }
-
+            await props.dispatch(loginUser(select));
+            navigate(from.pathname);
+          }
     }
 
     return (

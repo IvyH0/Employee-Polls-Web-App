@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 
 const Leaderboard = (props) => {
-
     const {users} = props; 
     console.log(users)
     return (
@@ -36,13 +35,14 @@ const Leaderboard = (props) => {
 }
 const mapStateToProps = ({authedUser, users}) => {
     const userArray = Object.keys(users).map((key) => {
-        const user = users[key];
+        const user = users[key]; 
+        console.log(user)
         return {
             id: user.id,
             name: user.name,
             avatarURL: user.avatarURL,
             answeredQuestions: Object.keys(user.answers).length,
-            createdQuestions: user.questions.length,
+            createdQuestions: user.questions.length, 
             score: Object.keys(user.answers).length + user.questions.length
         }
     });
@@ -54,3 +54,4 @@ const mapStateToProps = ({authedUser, users}) => {
 }
 
 export default connect(mapStateToProps)(Leaderboard); 
+

@@ -1,5 +1,5 @@
 import { RECEIVE_USERS } from '../actions/users';
-import { ADD_QUESTION, SAVE_ANSWER } from '../actions/pollQuestions';
+import { ADD_QUESTION_TO_USER, SAVE_ANSWER } from '../actions/pollQuestions';
 
 export default function users(state = {}, action) {
   switch (action.type) {
@@ -8,13 +8,13 @@ export default function users(state = {}, action) {
         ...state,
         ...action.users
       };
-    case ADD_QUESTION:
+    case ADD_QUESTION_TO_USER:
       const { question } = action;
       return {
         ...state,
         [question.author]: {
           ...state[question.author],
-          questions: state[question.author].questions.concat([question.id])
+          questions: state[question.author].questions.concat([question])
         }
       };
     case SAVE_ANSWER:

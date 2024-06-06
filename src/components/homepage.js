@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import DoneQuestion from './doneQuestions';
 import NewQuestion from './newQuestions';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, Navigate } from 'react-router-dom';
 
 const withRouter = (Component) => {
     const ComponentWithRouterProp = (props) => {

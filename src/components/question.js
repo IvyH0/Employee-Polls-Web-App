@@ -1,8 +1,10 @@
 import {connect} from 'react-redux';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import Error404 from './error404';
 import { handleSaveAnswer } from '../actions/pollQuestions';
-import { useLocation, useNavigate, useParams} from 'react-router-dom';
 import PollResults from './pollResults';
+import { useLocation, useNavigate, useParams} from 'react-router-dom';
+
 
 const withRouter = (Component) => {
     const ComponentWithRouterProp = (props) => {
@@ -17,7 +19,14 @@ const withRouter = (Component) => {
 const Question = (props) => {
     const {question, users, authedUser} = props; 
     const [showPoll, setShowPoll] = useState(false);
-    const navigate = useNavigate();
+
+    if (!question) {
+        return <Error404 />
+    }
+
+    if(!authedUser === null){
+        return <Error404/>
+    }
 
     const handleSelect = (e, option) => {
         e.preventDefault();
@@ -33,23 +42,7 @@ const Question = (props) => {
         setShowPoll(!showPoll);
     }
 
-    useEffect(() => {
-        if (!question) {
-            navigate('../404');
-        }
-    }, [question, navigate]);
-    
-    if(!question) {
-        return null; 
-    }
-    if (authedUser === null) {
-        navigate('/login');
-        return null;
-      }
-
     const {id, optionOne, optionTwo, author } = question;
-
-    
     const user = props.users[author];
 
     return (
@@ -109,8 +102,9 @@ const Question = (props) => {
 
 
 const mapStateToProps = ({authedUser, users, questions}, props) => {
-    const {id} = props.router.params
-    const question = questions[id]
+    const {id} = props.router.params;
+    const question = questions[id];
+
     return {
         authedUser, 
         users,
