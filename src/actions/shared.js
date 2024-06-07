@@ -1,7 +1,8 @@
 import {getInitialData} from '../apis';
 import {receiveUsers} from './users';
 import {receiveQuestions} from './pollQuestions';
-import {loginUser} from './authedUser';
+// import {loginUser} from './authedUser';
+import { setAuthedUser } from './authedUser';
 
 const authedId = 'mtsamis';
 
@@ -12,7 +13,7 @@ export function handleInitialData (authedId) {
                 dispatch(receiveUsers(users))
                 dispatch(receiveQuestions(questions))
                 if (authedId) {
-                    dispatch(loginUser(authedId))
+                    dispatch(setAuthedUser(authedId))
                 }
 
             })

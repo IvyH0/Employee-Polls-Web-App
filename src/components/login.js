@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';    
 import {useState} from 'react';
-import {loginUser} from '../actions/authedUser';
+// import {loginUser} from '../actions/authedUser';
+import {setAuthedUser} from '../actions/authedUser';
 import {useNavigate, useLocation} from 'react-router-dom';
 
 
@@ -20,7 +21,7 @@ const Login = (props) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         if (select) {
-            await props.dispatch(loginUser(select));
+            await props.dispatch(setAuthedUser(select));
             navigate(from.pathname);
           }
     }

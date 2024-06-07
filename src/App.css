@@ -200,23 +200,25 @@
 }
 
 .table-head{
-    display:flex; 
     background-color: #ffa57c;
     color: white; 
-    padding: 10px; 
-}
+} 
 .user-th{
     width: 50%;
+    display: flex;
+    flex: flex-start;
     padding-left: 10px; 
 }
 .created-th,
 .answer-th{
     width: 25%; 
-    text-align:center
+    /* text-align:center */
+}
+
+th {
+    padding: 15px; 
 }
 .table-row{
-    display:flex; 
-    justify-content: space-between;
     align-items: center;
     background-color: #fff5f0;
 }

@@ -19,17 +19,16 @@ function App(props) {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const storedAuthedUser = JSON.parse(localStorage.getItem('authedUser'));
     useEffect(() => {
-        if (storedAuthedUser) {
-            dispatch(loginUser(storedAuthedUser));
-        };
-        if(storedAuthedUser === null){
-            navigate('/login', { state: { from: location.pathname} });
-        }
+        // if (storedAuthedUser) {
+        //     dispatch(loginUser(storedAuthedUser));
+        // };
+        // if(storedAuthedUser === null){
+        //     navigate('/login', { state: { from: location.pathname} });
+        // }
+        
         dispatch(handleInitialData());
-    }, [dispatch, storedAuthedUser, location.pathname, navigate, props]);
+    }, [dispatch, location.pathname, navigate, props]);
 
     const showNav = location.pathname !== '/login';
 
@@ -39,7 +38,7 @@ function App(props) {
                 {showNav && <Nav/>}
                 <Routes>
                     <Route path="/login" element={<Login />} />
-                    <Route element = {<PrivateRoute authedUser={storedAuthedUser}/>}>
+                    <Route element = {<PrivateRoute/>}>
                         <Route path="/" element={<Homepage />} />
                         <Route path="/questions/:id" element={<Question />} />
                         <Route path="/leaderboard" element={<LeaderBoard />} />

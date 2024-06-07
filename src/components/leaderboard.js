@@ -1,15 +1,36 @@
 import {connect} from 'react-redux';
+import { createSelector } from 'reselect';
+
+const getUsers = (state) => state.users;
+
+const getSortedUsers = createSelector(
+  [getUsers],
+  (users) => {
+    return Object.keys(users).map((key) => {
+      const user = users[key]; 
+      return {
+          id: user.id,
+          name: user.name,
+          avatarURL: user.avatarURL,
+          answeredQuestions: Object.keys(user.answers).length,
+          createdQuestions: user.questions.length, 
+          score: Object.keys(user.answers).length + user.questions.length
+      }
+    }).sort((a, b) => b.score - a.score);
+  }
+);
 
 const Leaderboard = (props) => {
     const {users} = props; 
-    console.log(users)
     return (
         <div className='center'>
             <table className='leaderboard'>
                 <thead className='table-head'>
-                    <h3 className='user-th'>Users</h3>
-                    <h3 className='answer-th'>Answered</h3>
-                    <h3 className='created-th'>Created</h3>
+                    <tr>
+                        <th className='user-th'>Users</th>
+                        <th className='answer-th'>Answered</th>
+                        <th className='created-th'>Created</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {users.map((user) => (
@@ -33,25 +54,12 @@ const Leaderboard = (props) => {
         </div>
     )
 }
-const mapStateToProps = ({authedUser, users}) => {
-    const userArray = Object.keys(users).map((key) => {
-        const user = users[key]; 
-        console.log(user)
-        return {
-            id: user.id,
-            name: user.name,
-            avatarURL: user.avatarURL,
-            answeredQuestions: Object.keys(user.answers).length,
-            createdQuestions: user.questions.length, 
-            score: Object.keys(user.answers).length + user.questions.length
-        }
-    });
-
+const mapStateToProps = (state, props) => {
     return {
-        authedUser,
-        users: userArray.sort((a, b) => b.score - a.score)
+      authedUser: state.authedUser,
+      users: getSortedUsers(state)
     }
-}
-
-export default connect(mapStateToProps)(Leaderboard); 
+  }
+  
+  export default connect(mapStateToProps)(Leaderboard);
 
