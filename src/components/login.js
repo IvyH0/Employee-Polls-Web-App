@@ -31,7 +31,7 @@ const Login = (props) => {
             <div className='center login-container'>
                 <h1 className='login-title'>Welcome to the Would You Rather App!</h1>
                 <p className='login-subtext' >Please sign in to continue</p>
-                <select className='login-select' onChange={(e) => handleSelectChange(e)}>
+                <select className='login-select' onChange={(e) => handleSelectChange(e)} data-testid='user-select'>
                     <option className='option-select'value=''>Select User</option>
                     {
                         Object.keys(users).map((user) => (
@@ -46,7 +46,7 @@ const Login = (props) => {
     );
 }
 
-const mapStateToProps = ({ authedUser, users }) => {
+const mapStateToProps = ({ authedUser, users = {} }) => {
     return {
         authedUser,
         users

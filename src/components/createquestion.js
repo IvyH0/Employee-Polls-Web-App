@@ -29,18 +29,20 @@ const CreateQuestion = ({dispatch, id}) => {
     };
 
     return (
+        
         <div className='center'>
             <h2>Would You Rather</h2>
             <p>Create Your Own Poll</p>
             <form onSubmit={handleSubmit} className='form-container center'>
-                <label className='input-label'>Option One</label>
-                <input className='input' type='text' placeholder='Option One' value={optionOneText} onChange={handleChangeOne}/>
-                <label className='input-label'>Option Two</label>
-                <input className='input' type='text' placeholder='Option Two' value={optionTwoText} onChange={handleChangeTwo}/>
+            { (optionTwoText === "" || optionOneText === "") && <p data-testid="error">Both fields are required</p> }
+            <label className='input-label' htmlFor='optionOne'>Option One</label>
+            <input id='optionOne' className='input' type='text' placeholder='Option One' value={optionOneText} onChange={handleChangeOne}/>
+            <label className='input-label' htmlFor='optionTwo'>Option Two</label>
+            <input id='optionTwo' className='input' type='text' placeholder='Option Two' value={optionTwoText} onChange={handleChangeTwo}/>
                 <button type='submit' disabled={optionTwoText === "" || optionOneText === ""} className='btn'>Submit</button>
             </form>
-
         </div>
+        
     );
 };
 
